@@ -19,7 +19,7 @@ const Explanation = ({ topic, explanation, level }) => {
       </div>
       
       <div className="explanation-footer">
-        <p>For educational purposes only. Not medical advice.</p>
+        
       </div>
     </div>
   );
