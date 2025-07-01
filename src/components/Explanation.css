@@ -1,138 +1,60 @@
-/* client/src/components/Explanation.css */
-.explanation-panel {
-  background: #fffef6; /* Soft paper color */
+.explanation-container {
+  background: white;
   border-radius: 8px;
-  box-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.05),
-    0 4px 16px rgba(0, 0, 0, 0.08),
-    inset 0 0 20px rgba(0, 0, 0, 0.03); /* Inner shadow for paper effect */
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  max-height: 80vh;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
   margin: 0 auto;
-  width: 100%;
-  border: 1px solid #e0e0e0;
-  position: relative;
-  padding: 0;
+  overflow: hidden;
 }
 
-/* Paper texture effect */
-.explanation-panel::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px),
-    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
-  background-size: 20px 20px;
-  pointer-events: none;
+.explanation-header {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.panel-header {
-  background: linear-gradient(135deg, #3a86ff, #2667cc);
-  padding: 1.2rem 1.5rem;
-  color: white;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.panel-header h2 {
+.explanation-header h2 {
   margin: 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  color: #2c3e50;
 }
 
 .level-badge {
-  background: rgba(255,255,255,0.2);
   padding: 0.3rem 0.8rem;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.panel-content {
-  padding: 1.5rem;
-  flex: 1;
-  overflow-y: auto;
-  line-height: 1.7;
-  color: #333;
-  background: #fffef6; /* Match paper background */
-}
-
-.panel-content h3 {
-  color: #3a86ff;
-  margin: 1.5rem 0 1rem;
-  font-size: 1.2rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
   font-weight: 600;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 0.5rem;
 }
 
-.panel-content p {
-  margin-bottom: 1.2rem;
+.level-badge.pre-med { background: #9b59b6; color: white; }
+.level-badge.medical-student { background: #3498db; color: white; }
+.level-badge.resident { background: #e67e22; color: white; }
+.level-badge.attending { background: #2ecc71; color: white; }
+
+.explanation-content {
+  padding: 2rem;
 }
 
-.panel-content ul {
+.explanation-content h3 {
+  color: #2c3e50;
+  margin-top: 1.5rem;
+}
+
+.explanation-content ul {
   padding-left: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 
-.panel-content li {
+.explanation-content li {
   margin-bottom: 0.5rem;
-  position: relative;
 }
 
-.panel-content strong {
-  color: #2667cc;
-  font-weight: 600;
-}
-
-.panel-footer {
-  background: #f8f8f8;
-  padding: 0.8rem;
-  text-align: center;
-  font-size: 0.8rem;
-  color: #666;
+.explanation-footer {
+  background: #f8f9fa;
+  padding: 1rem;
   border-top: 1px solid #eee;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .explanation-panel {
-    max-height: 60vh;
-    margin-top: 1.5rem;
-  }
-  
-  .panel-header {
-    padding: 1rem;
-  }
-  
-  .panel-content {
-    padding: 1.2rem;
-  }
-}
-
-/* Custom scrollbar for content */
-.panel-content::-webkit-scrollbar {
-  width: 6px;
-}
-
-.panel-content::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.02);
-}
-
-.panel-content::-webkit-scrollbar-thumb {
-  background: rgba(58,134,255,0.3);
-  border-radius: 3px;
-}
-
-.panel-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(58,134,255,0.5);
+  text-align: center;
+  font-size: 0.9rem;
+  color: #7f8c8d;
 }
