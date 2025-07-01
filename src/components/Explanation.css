@@ -1,147 +1,138 @@
 /* client/src/components/Explanation.css */
 .explanation-panel {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: #fffef6; /* Soft paper color */
+  border-radius: 8px;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    inset 0 0 20px rgba(0, 0, 0, 0.03); /* Inner shadow for paper effect */
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  animation: float 6s ease-in-out infinite;
-  transition: all 0.3s ease;
-}
-
-.explanation-panel:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.explanation-panel.mobile-view {
-  animation: none;
   height: auto;
-  max-height: 60vh;
+  max-height: 80vh;
+  margin: 0 auto;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  position: relative;
+  padding: 0;
+}
+
+/* Paper texture effect */
+.explanation-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
 }
 
 .panel-header {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  padding: 1.5rem;
+  background: linear-gradient(135deg, #3a86ff, #2667cc);
+  padding: 1.2rem 1.5rem;
   color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .panel-header h2 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .level-badge {
-  padding: 0.5rem 1rem;
+  background: rgba(255,255,255,0.2);
+  padding: 0.3rem 0.8rem;
   border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
+  letter-spacing: 0.5px;
 }
 
-.level-badge.pre-med { background-color: var(--warning); }
-.level-badge.medical-student { background-color: var(--success); }
-.level-badge.resident { background-color: var(--accent); }
-.level-badge.attending { background-color: var(--danger); }
-
 .panel-content {
-  padding: 2rem;
+  padding: 1.5rem;
   flex: 1;
   overflow-y: auto;
+  line-height: 1.7;
+  color: #333;
+  background: #fffef6; /* Match paper background */
 }
 
 .panel-content h3 {
-  color: var(--primary);
+  color: #3a86ff;
   margin: 1.5rem 0 1rem;
-  font-size: 1.3rem;
-  position: relative;
-  padding-left: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
 }
 
-.panel-content h3::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.4em;
-  height: 0.8em;
-  width: 5px;
-  background: var(--primary);
-  border-radius: 5px;
+.panel-content p {
+  margin-bottom: 1.2rem;
 }
 
 .panel-content ul {
   padding-left: 1.5rem;
-  list-style-type: none;
+  margin-bottom: 1.5rem;
 }
 
 .panel-content li {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
   position: relative;
-  padding-left: 1.8rem;
-}
-
-.panel-content li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: var(--primary);
-  font-size: 1.8rem;
-  line-height: 0.8;
-}
-
-.panel-content p {
-  margin-bottom: 1rem;
 }
 
 .panel-content strong {
-  color: var(--primary);
+  color: #2667cc;
   font-weight: 600;
 }
 
-.panel-content a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px dashed var(--accent);
-  transition: all 0.2s ease;
-}
-
-.panel-content a:hover {
-  color: var(--secondary);
-  border-bottom-style: solid;
-}
-
 .panel-footer {
-  background: rgba(0, 0, 0, 0.02);
-  padding: 1rem;
+  background: #f8f8f8;
+  padding: 0.8rem;
   text-align: center;
-  font-size: 0.85rem;
-  color: rgba(0, 0, 0, 0.6);
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 0.8rem;
+  color: #666;
+  border-top: 1px solid #eee;
 }
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
+  .explanation-panel {
+    max-height: 60vh;
+    margin-top: 1.5rem;
+  }
+  
   .panel-header {
     padding: 1rem;
   }
   
-  .panel-header h2 {
-    font-size: 1.3rem;
-  }
-  
   .panel-content {
-    padding: 1.5rem;
+    padding: 1.2rem;
   }
-  
-  .panel-content h3 {
-    font-size: 1.1rem;
-  }
+}
+
+/* Custom scrollbar for content */
+.panel-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.panel-content::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.02);
+}
+
+.panel-content::-webkit-scrollbar-thumb {
+  background: rgba(58,134,255,0.3);
+  border-radius: 3px;
+}
+
+.panel-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(58,134,255,0.5);
 }
