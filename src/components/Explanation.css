@@ -2,39 +2,75 @@
 .explanation-panel {
   background: white;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.08),
+    0 6px 12px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
   animation: float 6s ease-in-out infinite;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 249, 250, 0.98) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .explanation-panel:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.explanation-panel.mobile-view {
-  animation: none;
-  height: auto;
-  max-height: 60vh;
+  transform: translateY(-8px);
+  box-shadow: 
+    0 16px 32px rgba(58, 134, 255, 0.15),
+    0 8px 16px rgba(58, 134, 255, 0.1);
 }
 
 .panel-header {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  background: linear-gradient(
+    135deg, 
+    rgba(58, 134, 255, 0.95) 0%, 
+    rgba(38, 103, 204, 0.95) 100%
+  );
   padding: 1.5rem;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  transform: rotate(30deg);
+  animation: shine 6s infinite linear;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(30deg); }
+  100% { transform: translateX(100%) rotate(30deg); }
 }
 
 .panel-header h2 {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .level-badge {
@@ -44,67 +80,106 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.level-badge.pre-med { background-color: var(--warning); }
-.level-badge.medical-student { background-color: var(--success); }
-.level-badge.resident { background-color: var(--accent); }
-.level-badge.attending { background-color: var(--danger); }
+.level-badge:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.05);
+}
+
+.level-badge.pre-med { 
+  background-color: rgba(255, 158, 0, 0.85);
+  color: white;
+}
+.level-badge.medical-student { 
+  background-color: rgba(56, 176, 0, 0.85);
+  color: white;
+}
+.level-badge.resident { 
+  background-color: rgba(76, 201, 240, 0.85);
+  color: white;
+}
+.level-badge.attending { 
+  background-color: rgba(239, 35, 60, 0.85);
+  color: white;
+}
 
 .panel-content {
   padding: 2rem;
   flex: 1;
   overflow-y: auto;
+  background-image: 
+    radial-gradient(rgba(58, 134, 255, 0.06) 1px, transparent 1px),
+    radial-gradient(rgba(58, 134, 255, 0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
 }
 
 .panel-content h3 {
   color: var(--primary);
-  margin: 1.5rem 0 1rem;
+  margin: 1.8rem 0 1.2rem;
   font-size: 1.3rem;
   position: relative;
-  padding-left: 1.2rem;
+  padding-left: 1.5rem;
+  font-weight: 600;
 }
 
 .panel-content h3::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.4em;
-  height: 0.8em;
-  width: 5px;
-  background: var(--primary);
-  border-radius: 5px;
+  top: 0.3em;
+  height: 1em;
+  width: 6px;
+  background: linear-gradient(to bottom, var(--primary), var(--accent));
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(58, 134, 255, 0.2);
 }
 
 .panel-content ul {
-  padding-left: 1.5rem;
+  padding-left: 1.8rem;
   list-style-type: none;
 }
 
 .panel-content li {
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   position: relative;
-  padding-left: 1.8rem;
+  padding-left: 2.2rem;
+  line-height: 1.6;
 }
 
 .panel-content li::before {
-  content: '•';
+  content: '';
   position: absolute;
-  left: 0;
-  color: var(--primary);
-  font-size: 1.8rem;
-  line-height: 0.8;
+  left: 0.5rem;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(58, 134, 255, 0.2);
 }
 
 .panel-content p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.7;
+  color: var(--dark);
 }
 
 .panel-content strong {
   color: var(--primary);
   font-weight: 600;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding: 0 2px;
 }
 
 .panel-content a {
@@ -112,25 +187,55 @@
   text-decoration: none;
   border-bottom: 1px dashed var(--accent);
   transition: all 0.2s ease;
+  font-weight: 500;
 }
 
 .panel-content a:hover {
   color: var(--secondary);
-  border-bottom-style: solid;
+  border-bottom: 1px solid var(--secondary);
 }
 
 .panel-footer {
-  background: rgba(0, 0, 0, 0.02);
-  padding: 1rem;
+  background: linear-gradient(
+    to right,
+    rgba(248, 249, 250, 0.9) 0%,
+    rgba(233, 236, 239, 0.9) 100%
+  );
+  padding: 1.2rem;
   text-align: center;
   font-size: 0.85rem;
-  color: rgba(0, 0, 0, 0.6);
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  color: rgba(43, 45, 66, 0.7);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-weight: 500;
 }
 
+/* Floating animation */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0); 
+    box-shadow: 
+      0 12px 24px rgba(0, 0, 0, 0.08),
+      0 6px 12px rgba(0, 0, 0, 0.05);
+  }
+  50% { 
+    transform: translateY(-10px); 
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.12),
+      0 10px 20px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+  .explanation-panel {
+    animation: none;
+    height: auto;
+    max-height: 60vh;
+    margin-top: 1.5rem;
+  }
+  
   .panel-header {
-    padding: 1rem;
+    padding: 1.2rem;
   }
   
   .panel-header h2 {
@@ -143,5 +248,11 @@
   
   .panel-content h3 {
     font-size: 1.1rem;
+    margin: 1.5rem 0 1rem;
+  }
+  
+  .panel-content li {
+    padding-left: 1.8rem;
+    margin-bottom: 0.8rem;
   }
 }
