@@ -1,85 +1,133 @@
+/* --- Base Header Styles --- */
 .header {
-  background: linear-gradient(135deg, #3a86ff 0%, #2667cc 100%);
-  color: white;
-  padding: 1.5rem 1rem 3rem;
+  /* NEW: Opaque background with slight transparency for glassmorphism */
+  background: rgba(255, 255, 255, 0.2); /* Very light, slightly transparent white */
+  color: #333; /* Changed text color to dark grey for contrast */
+  padding: 1.5rem 1rem; /* Adjusted padding as wave is removed */
   text-align: center;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease-in-out; /* Smoother transition */
   z-index: 100;
+  overflow: hidden;
+
+  /* Glassmorphism Effect - prominent */
+  backdrop-filter: blur(25px) saturate(180%); /* Stronger blur for more opaque look */
+  -webkit-backdrop-filter: blur(25px) saturate(180%); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.6); /* More prominent border for glass effect */
+  border-radius: 20px; /* Rounded corners for modern glass aesthetic */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25); /* Deeper shadow for "floating" effect */
 }
 
+/* --- Scrolled Header State --- */
 .header.scrolled {
-  padding: 1rem 1rem 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  /* Scrolled state: slightly less opaque, tighter shadow */
+  background: rgba(255, 255, 255, 0.15); /* Slightly more transparent when scrolled */
+  padding: 1rem 1rem;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15); /* Reduced shadow */
+  backdrop-filter: blur(18px) saturate(150%); /* Slightly less intense blur on scroll */
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border-color: rgba(255, 255, 255, 0.4); /* Border subtly changes */
+  border-radius: 15px; /* Less rounded when scrolled */
 }
 
+/* --- Header Container --- */
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column; /* Ensure vertical stacking for brand */
+  align-items: center;
+  justify-content: center;
 }
 
+/* --- Header Brand (Logo and Title) --- */
 .header-brand {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  margin-bottom: 0; /* No margin below brand as wave is gone */
 }
 
+/* --- Logo Icon --- */
 .logo-icon {
-  font-size: 2.2rem;
-  animation: pulse 2s infinite;
+  font-size: 2.5rem; /* Slightly larger icon */
+  color: #333; /* Dark grey icon for contrast */
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Subtle dark glow for icon */
+  animation: pulse 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1); /* Smoother pulse */
 }
 
+/* --- Header Title --- */
 .header-title {
   margin: 0;
-  font-size: 2.2rem;
-  font-weight: 700;
-  background: linear-gradient(to right, #fff 0%, #f3f4f6 100%);
+  font-size: 2.6rem; /* Larger title */
+  font-weight: 800; /* Bolder */
+  /* Text color for the title, consider a darker gradient for contrast */
+  background: linear-gradient(to right, #333 0%, #555 100%); /* Dark grey gradient */
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  letter-spacing: 1px;
+  color: transparent; /* Makes the gradient visible */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Enhanced text shadow */
+  letter-spacing: 1.2px; /* Increased letter spacing */
 }
 
-.header-wave {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
+/* --- Header Wave (REMOVED) --- */
+/* All .header-wave related styles are removed */
 
-.header-wave svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 80px;
-}
-
-.header-wave .shape-fill {
-  fill: #f8f9fa;
-}
-
+/* --- Keyframe Animations --- */
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1); /* Pronounced pulse */
+    opacity: 0.95;
+  }
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 992px) {
+  .header {
+    padding: 1.2rem 1rem;
+  }
+  .header-title {
+    font-size: 2.2rem;
+  }
+  .logo-icon {
+    font-size: 2.2rem;
+  }
 }
 
 @media (max-width: 768px) {
   .header {
-    padding: 1.2rem 1rem 2.5rem;
+    padding: 1rem 0.8rem;
+    border-radius: 18px; /* Adjust radius for smaller screens */
   }
-  
   .header-title {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
+    letter-spacing: 1px;
   }
-  
   .logo-icon {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    padding: 0.8rem 0.6rem;
+    border-radius: 15px; /* Even smaller radius for very small screens */
+  }
+  .header-brand {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .header-title {
+    font-size: 1.6rem;
+  }
+  .logo-icon {
+    font-size: 1.6rem;
   }
 }
