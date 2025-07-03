@@ -57,8 +57,7 @@ const TopicForm = ({ onSubmit, loading }) => {
             value={formData.language}
             onChange={handleChange}
           >
-            <option value="English">English</option>
-            <option value="Spanish">Kiswahili</option>            
+            <option value="English">English</option>                      
           </select>
         </div>
       </div>
